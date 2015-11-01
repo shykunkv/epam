@@ -1,22 +1,39 @@
 package homework3;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 
 public class Payment {
+	
 	class Product {
+		
 		private String name;
 		private double price;
+		private int quantity;
 		
-		
-		public Product(String name, double price) {
+		public Product(String name, double price, int quantity) {
 			this.name = name;
 			this.price = price;
+			this.quantity = quantity;
 		}
+
+
+			
+		
+		public int getQuantity() {
+			return quantity;
+		}
+
+
+
+
+		public void setQuantity(int quantity) {
+			this.quantity = quantity;
+		}
+
+
 
 
 		public String getName() {
@@ -40,10 +57,10 @@ public class Payment {
 	}
 	
 	
-	Map<Product, Integer> order = new HashMap();
+	List<Product> order = new ArrayList<Product>();
 	
-	public void addProduct(Product product, int quantity) {
-		order.put(product, quantity);
+	public void addProduct(Product product) {
+		order.add(product);
 	}
 	
 	public void deleteProduct(Product product) {
@@ -59,13 +76,13 @@ public class Payment {
 		
 		int n = 1;
 		double total = 0;
-		for (Product p : order.keySet()) {
+		for (Product p : order) {
 			sb.append("" + n++);
 			sb.append("\t" + p.getName());
-			sb.append("\t" + order.get(p));
-			sb.append("\t\t" + p.getPrice() * order.get(p) + "$");
+			sb.append("\t" + p.getQuantity());
+			sb.append("\t\t" + p.getPrice() * p.getQuantity() + "$");
 			
-			total += p.getPrice() * order.get(p);
+			total += p.getPrice() * p.getQuantity();
 			sb.append("\n");
 		}
 		sb.append("\n\n");

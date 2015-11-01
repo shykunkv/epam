@@ -3,6 +3,7 @@ package homework3;
 
 public class MyLinkedList<E> {
 	
+	@SuppressWarnings("hiding")
 	class ListNode<E> implements Comparable<E> {
 	     
 	    private E value;
@@ -88,7 +89,6 @@ public class MyLinkedList<E> {
         
         
         ListNode<E> temp = head;
-        ListNode<E> refNode = null;
         
         while (index > 1) {
             temp = temp.next();
